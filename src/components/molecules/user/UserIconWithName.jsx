@@ -1,6 +1,8 @@
 import styled from "styled-components";
-import React, { memo, useContext } from "react";
-import { UserContext } from "../../../providers/UserProvider";
+import React, { memo } from "react";
+// import { UserContext } from "../../../providers/UserProvider";
+import { useRecoilValue } from "recoil";
+import { userState } from "../../../store/userState";
 
 const SContainer = styled.div`
   text-align: center;
@@ -22,7 +24,8 @@ const SEdit = styled.span`
 
 export const UserIconWithName = memo(({ image, name }) => {
   console.log("UserIconWithName");
-  const { userInfo } = useContext(UserContext);
+  // const { userInfo } = useContext(UserContext);
+  const userInfo = useRecoilValue(userState);
   const isAdmin = userInfo ? userInfo.isAdmin : false;
 
   return (

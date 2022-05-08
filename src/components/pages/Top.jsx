@@ -1,16 +1,19 @@
 import styled from "styled-components";
 import { SecondaryButton } from "../atoms/button/SecondaryButton";
 import { useHistory } from "react-router-dom";
-import { useContext } from "react";
-import { UserContext } from "../../providers/UserProvider";
+// import { UserContext } from "../../providers/UserProvider";
+import { useSetRecoilState } from "recoil";
+import { userState } from "../../store/userState";
 
 const SContainer = styled.div`
   text-align: center;
 `;
 
 export const Top = () => {
-  const { setUserInfo } = useContext(UserContext);
   const history = useHistory();
+  // const { setUserInfo } = useContext(UserContext);
+  const setUserInfo = useSetRecoilState(userState);
+
   const onClickAdmin = () => {
     setUserInfo({ isAdmin: true });
     history.push("/users");
